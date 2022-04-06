@@ -1,10 +1,10 @@
-# include <i-pro-b/l1.hxx>
+# include <i-pro-b/l1/l1.hxx>
 
 # include <iostream>
 # include <vector>
 
 void i_pro_b::l1::hello () {
-    std::cout << "I_PRO_B L1 - matchings\n";\
+    std::cout << "I_PRO_B L1 - matchings\n";
 }
 
 bool i_pro_b::l1::kuhn_augment (int v) {

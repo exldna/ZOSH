@@ -1,18 +1,33 @@
-﻿# include <iostream>
-# include <vector>
+# include <iostream>
 
-using Graph = std::vector<std::vector<int>>;
+# include <fstream>
+# include <string>
+# include <algorithm>
 
-int main()
-{
-	size_t m, n;
-	std::cin >> m >> n;
+int main () {
+    
+    // std::fstream file {"input.txt"};
+    std::string s;
+    std::cin >> s;
 
-	Graph g = Graph(n, std::vector<int> (m));
+    size_t max_l = 0;
 
-	for (int i = 0; i < n; ++i) {
-		for 
-	}
+    for (size_t i = 0; i < s.size (); ++i) {
+        size_t c = s.find ('A');
+        if (c == std::string::npos) {
+            break;
+        }
 
-	return 0;
+        size_t counter_E = 0;
+        for (auto& _c : s.substr (0, c)) {
+            if (_c == 'E') ++counter_E;
+        }
+
+        if (counter_E >= 3 && c > max_l) max_l = c;
+        s = s.substr (c + 1, s.size() - c);
+    }
+
+    std::cout << max_l << '\n';
+
+    return 0;
 }

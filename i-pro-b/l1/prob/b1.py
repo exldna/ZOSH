@@ -20,7 +20,7 @@ def kuhn(v):
         if mt[vt] == -1 or kuhn(mt[vt]):
             mt[vt] = v
             return True
-    
+
     return False
 
 
@@ -29,13 +29,26 @@ def main():
     global n, m
     global graph, used, mt
 
-    n, m = map(int, input().split())
+    n = int(input())
+    name = input()
+    m = len(name)
+
+    if n < m:
+        print("NO")
+        return
 
     graph = list()
 
     for _ in range(n):
-        s = list(map(lambda v: int(v) - 1, input().split()))[:-1]
-        graph.append(s)
+        cube = input()
+        adjacency = list()
+
+        for c in cube:
+            for i, l in enumerate(name):
+                if c == l and i not in adjacency:
+                    adjacency.append(i)
+
+        graph.append(adjacency)
 
     mt = [-1 for _ in range(m)]
 
@@ -43,16 +56,18 @@ def main():
         used = [False for _ in range(n)]
         kuhn(v)
 
-    ans = '\n'
-    l = 0
+    ans = list()
 
-    for i, j in enumerate(mt):
-        print(i, j)
+    for j in mt:
         if j != -1:
-            l += 1
-            ans += f'{i + 1} {j + 1}\n'
+            ans.append(j + 1)
 
-    print(l, ans)
+    if len(ans) != m:
+        print("NO")
+    else:
+        print("YES")
+        for a in ans:
+            print(a, end=" ")
 
 
 if __name__ == '__main__':
